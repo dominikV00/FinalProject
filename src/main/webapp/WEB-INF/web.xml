@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <display-name>Vehicle Management Web Application</display-name>
+
+    <context-param>
+        <param-name>URLDB</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/finaljavaproject</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>USERNAMEDB</param-name>
+        <param-value>root</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>PASSWORDDB</param-name>
+        <param-value>P@ssw0rd</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>ControllerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
