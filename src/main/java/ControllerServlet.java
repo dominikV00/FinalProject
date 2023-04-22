@@ -1,16 +1,45 @@
+import jakarta.servlet.annotation.WebServlet;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Serial;
 import java.sql.SQLException;
 import java.util.List;
 
 public class ControllerServlet extends HttpServlet {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private CRUDapp cruDapp;
+
+    @WebServlet("/login")
+    public static class LoginServlet extends jakarta.servlet.http.HttpServlet {
+
+        protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws IOException {
+
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+
+            boolean isAdmin;
+
+            try {
+                isAdmin = CRUDapp.isAdmin(user);
+                if (LoginDemo.validateLogin(user) && isAdmin)
+                    response.sendRedirect("vehiclelist.jsp");
+                else
+                    response.sendRedirect("loginsuccess.html");
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public void init() {
         String URLDB = getServletContext().getInitParameter("jdbc:postgresql://localhost:5432/finaljavaproject");
@@ -18,7 +47,6 @@ public class ControllerServlet extends HttpServlet {
         String PASSWORDDB = getServletContext().getInitParameter("itdomi");
 
         cruDapp = new CRUDapp(URLDB, USERNAMEDB, PASSWORDDB);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -99,5 +127,6 @@ public class ControllerServlet extends HttpServlet {
         response.sendRedirect("list");
 
     }
+
 }
 
