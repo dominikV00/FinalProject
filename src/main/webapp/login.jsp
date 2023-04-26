@@ -18,15 +18,15 @@
     <form action="login" method="post">
         <%--@declare id="password"--%>
         <%--@declare id="username"--%><label for="username">Username:</label>
-            <label>
-                <input name="username" size="30"/>
-            </label>
-            <br><br>
+        <label>
+            <input name="username" size="30"/>
+        </label>
+        <br><br>
         <label for="password">Password:</label>
-            <label>
-                <input type="password" name="password" size="30"/>
-            </label>
-            <br>${message}
+        <label>
+            <input type="password" name="password" size="30"/>
+        </label>
+        <br>${message}
         <br><br>
         <button type="submit">Login</button>
     </form>
@@ -37,9 +37,9 @@
     $(document).ready(function () {
         $("#loginForm").validate({
             rules: {
-                email: {
+                username: {
                     required: true,
-                    email: true
+                    username: true
                 },
 
                 password: "required",
@@ -47,8 +47,8 @@
 
             messages: {
                 email: {
-                    required: "Please enter email",
-                    email: "Please enter a valid email address"
+                    required: "Please enter username",
+                    email: "Please enter a valid username "
                 },
 
                 password: "Please enter password"

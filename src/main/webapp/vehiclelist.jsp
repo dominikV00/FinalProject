@@ -67,5 +67,6 @@
         </table>
     </div>
 </div>
+<a class="btn btn-success" href ="logout.jsp">Logout</a>
 </body>
 </html>

@@ -52,21 +52,27 @@
                     </c:if>
 
                     <fieldset class="form-group">
-                        <label>Vehicle brand</label> <input type="text"
+                        <label>Vehicle brand</label> <label>
+                        <input type="text"
                                                         value="<c:out value='${vehicle.vehicleBrand}' />" class="form-control"
-                                                        name="name" required="required">
+                                                        name="brand" required="required">
+                    </label>
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label>Vehicle year</label> <input type="text"
+                        <label>Vehicle year</label> <label>
+                        <input type="text"
                                                          value="<c:out value='${vehicle.vehicleYear}' />" class="form-control"
-                                                         name="email">
+                                                         name="year">
+                    </label>
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label>Vehicle mileage</label> <input type="text"
+                        <label>Vehicle mileage</label> <label>
+                        <input type="text"
                                                            value="<c:out value='${vehicle.vehicleMileage}' />" class="form-control"
-                                                           name="country">
+                                                           name="mileage">
+                    </label>
                     </fieldset>
 
                     <button type="submit" class="btn btn-success">Save</button>
