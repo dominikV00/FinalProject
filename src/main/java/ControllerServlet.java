@@ -1,6 +1,5 @@
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -63,7 +62,9 @@ public class ControllerServlet extends HttpServlet {
 
     private void EditVehicleForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
+
         int id = Integer.parseInt(request.getParameter("id"));
+        
         Vehicle existingVehicle = cruDapp.getVehicleId(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleform.jsp");
         request.setAttribute("vehicle", existingVehicle);
@@ -72,6 +73,7 @@ public class ControllerServlet extends HttpServlet {
 
     private void insertVehicle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+
         String brand = request.getParameter("brand");
         long year = Long.parseLong(request.getParameter("year"));
         long mileage = Long.parseLong(request.getParameter("mileage"));
@@ -83,6 +85,7 @@ public class ControllerServlet extends HttpServlet {
 
     private void updateVehicle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+
         long id = Long.parseLong(request.getParameter("id"));
         String brand = request.getParameter("brand");
         long year = Long.parseLong(request.getParameter("year"));
@@ -95,12 +98,12 @@ public class ControllerServlet extends HttpServlet {
 
     private void deleteVehicle(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+
         long id = Long.parseLong(request.getParameter("id"));
 
         Vehicle vehicle = new Vehicle(id);
         CRUDapp.isVehicleDeleted(vehicle);
         response.sendRedirect("list");
-
     }
 
 }
