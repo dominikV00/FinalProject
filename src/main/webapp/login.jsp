@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
@@ -18,11 +18,15 @@
     <form action="login" method="post">
         <%--@declare id="password"--%>
         <%--@declare id="username"--%><label for="username">Username:</label>
-        <input name="username" size="30"/>
-        <br><br>
+            <label>
+                <input name="username" size="30"/>
+            </label>
+            <br><br>
         <label for="password">Password:</label>
-        <input type="password" name="password" size="30"/>
-        <br>${message}
+            <label>
+                <input type="password" name="password" size="30"/>
+            </label>
+            <br>${message}
         <br><br>
         <button type="submit">Login</button>
     </form>

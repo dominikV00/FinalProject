@@ -12,32 +12,32 @@
 
     <context-param>
         <param-name>USERNAMEDB</param-name>
-        <param-value>root</param-value>
+        <param-value>postgres</param-value>
     </context-param>
 
     <context-param>
         <param-name>PASSWORDDB</param-name>
-        <param-value>P@ssw0rd</param-value>
+        <param-value>itdomi</param-value>
     </context-param>
 
-<!--    <servlet>-->
-<!--        <servlet-name>ControllerServlet</servlet-name>-->
-<!--        <servlet-class>ControllerServlet</servlet-class>-->
-<!--    </servlet>-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
 
-<!--    <servlet>-->
-<!--        <servlet-name>LoginServlet</servlet-name>-->
-<!--        <servlet-class>LoginServlet</servlet-class>-->
-<!--    </servlet>-->
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>LoginServlet</servlet-name>-->
-<!--        <url-pattern>/login</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>ControllerServlet</servlet-class>
+    </servlet>
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>ControllerServlet</servlet-name>-->
-<!--        <url-pattern>/</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -9,7 +9,7 @@
 
     HttpSession s = (HttpSession) request.getSession();
     s.invalidate();
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("login.jsp");
 
 %>
 </body>

@@ -19,14 +19,21 @@ public class CRUDapp {
     }
 
     public static void connectToDB() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         final String URLDB = "jdbc:postgresql://localhost:5432/finaljavaproject";
         final String USERNAMEDB = "postgres";
         final String PASSWORDDB = "itdomi";
+
         try {
             connection = DriverManager.getConnection(URLDB, USERNAMEDB, PASSWORDDB);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     static boolean isVehicleInserted(Vehicle vehicle) throws SQLException {
