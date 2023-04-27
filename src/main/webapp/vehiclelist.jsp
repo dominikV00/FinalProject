@@ -10,7 +10,6 @@
           crossorigin="anonymous">
 </head>
 <body>
-
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: tomato">
@@ -67,6 +66,8 @@
         </table>
     </div>
 </div>
+<div style="text-align: center">
 <a class="btn btn-success" href ="logout.jsp">Logout</a>
+</div>
 </body>
 </html>

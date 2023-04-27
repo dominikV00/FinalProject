@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Vehicle Management Application</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -13,22 +18,21 @@
     <title>Vehicle Fleet Management Login</title>
 </head>
 <body>
-<div style="text-align: center">
+<div align="center">
     <h1>Vehicle Fleet Management Login</h1>
     <form action="login" method="post">
-        <%--@declare id="password"--%>
-        <%--@declare id="username"--%><label for="username">Username:</label>
-        <label>
-            <input name="username" size="30"/>
-        </label>
-        <br><br>
-        <label for="password">Password:</label>
-        <label>
-            <input type="password" name="password" size="30"/>
-        </label>
-        <br>${message}
-        <br><br>
-        <button type="submit">Login</button>
+        <table style="with: 100%">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username"/></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password"/></td>
+            </tr>
+        </table>
+        <br>${message}<br>
+        <input type="submit" value="Login"/>
     </form>
 </div>
 </body>
@@ -41,20 +45,16 @@
                     required: true,
                     username: true
                 },
-
                 password: "required",
             },
-
             messages: {
-                email: {
+                username: {
                     required: "Please enter username",
-                    email: "Please enter a valid username "
+                    username: "Please enter a valid username "
                 },
-
                 password: "Please enter password"
             }
         });
-
     });
 </script>
 </html>
