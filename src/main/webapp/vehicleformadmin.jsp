@@ -1,3 +1,4 @@
+<%--@elvariable id="user" type="User"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -15,12 +16,12 @@
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: tomato">
         <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User Management App </a>
+            <a href="https://www.javaguides.net" class="navbar-brand"> User Management App <br> Welcome ${user.username} !</a>
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list"
-                   class="nav-link">Vehicles</a></li>
+            <li><a href="<%=request.getContextPath()%>/listadmin"
+                   class="nav-link">Vehicles list</a></li>
         </ul>
     </nav>
 </header>
@@ -30,10 +31,10 @@
         <div class="card-body">
             <%--@elvariable id="vehicle" type="Vehicle"--%>
             <c:if test="${vehicle != null}">
-            <form action="update" method="post">
+            <form action="updateadmin" method="post">
                 </c:if>
                 <c:if test="${vehicle == null}">
-                <form action="insert" method="post">
+                <form action="insertadmin" method="post">
                     </c:if>
 
                     <caption>

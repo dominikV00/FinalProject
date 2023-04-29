@@ -1,3 +1,4 @@
+<%--@elvariable id="user" type="User"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -15,12 +16,12 @@
          style="background-color: tomato">
         <div>
             <a href="" class="navbar-brand"> Vehicle
-                Management App </a>
+                Management App <br> Welcome ${user.username} ! </a>
         </div>
 
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/list"
-                   class="nav-link">Vehicle</a></li>
+                   class="nav-link">Vehicle list</a></li>
         </ul>
     </nav>
 </header>
@@ -56,9 +57,9 @@
                     <td><c:out value="${vehicle.vehicleBrand}"/></td>
                     <td><c:out value="${vehicle.vehicleYear}"/></td>
                     <td><c:out value="${vehicle.vehicleMileage}"/></td>
-                    <td><a href="edit?id=<c:out value='${vehicle.vehicleID}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="delete?id=<c:out value='${vehicle.vehicleID}' />">Delete</a></td>
+<%--                    <td><a href="edit?id=<c:out value='${vehicle.vehicleID}' />">Edit</a>--%>
+<%--                        &nbsp;&nbsp;&nbsp;&nbsp; <a--%>
+<%--                                href="delete?id=<c:out value='${vehicle.vehicleID}' />">Delete</a></td>--%>
                 </tr>
             </c:forEach>
             </tbody>
@@ -67,7 +68,7 @@
     </div>
 </div>
 <div style="text-align: center">
-<a class="btn btn-success" href ="logout.jsp">Logout</a>
+    <a class="btn btn-success" href ="logout.jsp">Logout</a>
 </div>
 </body>
 </html>

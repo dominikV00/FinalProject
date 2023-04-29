@@ -15,11 +15,6 @@ public class LoginServlet extends HttpServlet {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    private LoginDemo loginDemo;
-
-    public void init() {
-        loginDemo = new LoginDemo();
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -35,10 +30,14 @@ public class LoginServlet extends HttpServlet {
             isAdmin = CRUDapp.isAdmin(user);
             String destinationPage = "login.jsp";
 
-            if (user != null && LoginDemo.validateLogin(user)) {
+            if (user != null && LoginDemo.validateLogin(user) && isAdmin) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                destinationPage = "vehiclelist.jsp";
+                destinationPage = "vehiclelistadmin.jsp";
+            } else if (user != null && LoginDemo.validateLogin(user) && !isAdmin) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                destinationPage = "vehiclelistuser.jsp";
             } else {
                 String message = "Invalid username or password!";
                 request.setAttribute("message", message);
@@ -50,16 +49,6 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException | ServletException ex) {
             throw new ServletException(ex);
         }
-
-//        try {
-//            isAdmin = CRUDapp.isAdmin(user);
-//            if (LoginDemo.validateLogin(user) && isAdmin)
-//                response.sendRedirect("vehiclelist.jsp");
-//            else
-//                response.sendRedirect("loginsuccess.html");
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
 
     }
 }

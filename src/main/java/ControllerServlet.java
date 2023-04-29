@@ -34,44 +34,74 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             switch (action) {
-                case "/new" -> newVehicleForm(request, response);
-                case "/insert" -> insertVehicle(request, response);
-                case "/delete" -> deleteVehicle(request, response);
-                case "/edit" -> EditVehicleForm(request, response);
-                case "/update" -> updateVehicle(request, response);
-                default -> listVehicle(request, response);
+                case "/newadmin" -> newVehicleFormAdmin(request, response);
+                case "/new" -> newVehicleFormUser(request, response);
+                case "/insertadmin" -> insertVehicleAdmin(request, response);
+                case "/insert" -> insertVehicleUser(request, response);
+                case "/delete" -> deleteVehicleAdmin(request, response);
+                case "/edit" -> EditVehicleFormAdmin(request, response);
+                case "/updateadmin" -> updateVehicleAdmin(request, response);
+                case "/update" -> updateVehicleUser(request, response);
+                case "/listadmin" -> listVehicleAdmin(request, response);
+                default -> listVehicleUser(request, response);
             }
         } catch (SQLException exception) {
             throw new ServletException(exception);
         }
     }
 
-    private void listVehicle(HttpServletRequest request, HttpServletResponse response)
+    private void listVehicleAdmin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Vehicle> listVehicle = CRUDapp.listAllVehicles();
         request.setAttribute("listVehicle", listVehicle);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vehiclelist.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vehiclelistadmin.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void newVehicleForm(HttpServletRequest request, HttpServletResponse response)
+    private void listVehicleUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        List<Vehicle> listVehicle = CRUDapp.listAllVehicles();
+        request.setAttribute("listVehicle", listVehicle);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vehiclelistuser.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void newVehicleFormAdmin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleform.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleformadmin.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void EditVehicleForm(HttpServletRequest request, HttpServletResponse response)
+    private void newVehicleFormUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleformuser.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void EditVehicleFormAdmin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        
+
         Vehicle existingVehicle = cruDapp.getVehicleId(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleform.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicleformadmin.jsp");
         request.setAttribute("vehicle", existingVehicle);
         dispatcher.forward(request, response);
     }
 
-    private void insertVehicle(HttpServletRequest request, HttpServletResponse response)
+    private void insertVehicleAdmin(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+
+        String brand = request.getParameter("brand");
+        long year = Long.parseLong(request.getParameter("year"));
+        long mileage = Long.parseLong(request.getParameter("mileage"));
+
+        Vehicle newVehicle = new Vehicle(brand, year, mileage);
+        CRUDapp.isVehicleInserted(newVehicle);
+        response.sendRedirect("listadmin");
+    }
+
+    private void insertVehicleUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
 
         String brand = request.getParameter("brand");
@@ -83,7 +113,20 @@ public class ControllerServlet extends HttpServlet {
         response.sendRedirect("list");
     }
 
-    private void updateVehicle(HttpServletRequest request, HttpServletResponse response)
+    private void updateVehicleAdmin(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+
+        long id = Long.parseLong(request.getParameter("id"));
+        String brand = request.getParameter("brand");
+        long year = Long.parseLong(request.getParameter("year"));
+        long mileage = Long.parseLong(request.getParameter("mileage"));
+
+        Vehicle vehicle = new Vehicle(id, brand, year, mileage);
+        CRUDapp.isVehicleUpdated(vehicle);
+        response.sendRedirect("listadmin");
+    }
+
+    private void updateVehicleUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
 
         long id = Long.parseLong(request.getParameter("id"));
@@ -96,14 +139,14 @@ public class ControllerServlet extends HttpServlet {
         response.sendRedirect("list");
     }
 
-    private void deleteVehicle(HttpServletRequest request, HttpServletResponse response)
+    private void deleteVehicleAdmin(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
 
         long id = Long.parseLong(request.getParameter("id"));
 
         Vehicle vehicle = new Vehicle(id);
         CRUDapp.isVehicleDeleted(vehicle);
-        response.sendRedirect("list");
+        response.sendRedirect("listadmin");
     }
 
 }
